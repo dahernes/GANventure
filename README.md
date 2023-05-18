@@ -1,2 +1,3 @@
 # GANventure
- GAN workplace
+**MNIST**<br>
+Projekt 1: simple fully connected GAN
