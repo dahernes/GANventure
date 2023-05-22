@@ -1,15 +1,20 @@
 # GANventure
 ### MNIST<br>
 Projekt 1: simple fully connected GAN
-<br><br><br><br>
+
+<br><br>
 **useful literature**
-<br>*Guidance paper*
+<br>Guidance paper
 
 Goodfellow, I., Pouget-Abadie, J., Mirza, M., Xu, B., Warde-Farley, D., Ozair, S., ... & Bengio, Y. (2020). 
 <br>Generative adversarial networks. Communications of the ACM, 63(11), 139-144.
 <br>[link](https://arxiv.org/abs/1406.2661)
 
-*more helpful paper*
+Radford, A., Metz, L., & Chintala, S. (2015). 
+<br>Unsupervised representation learning with deep convolutional generative adversarial networks.
+<br>[link](https://arxiv.org/abs/1511.06434)
+
+<br><br>*more helpful literature*
 
 Wang, Y. (2020). 
 <br>A mathematical introduction to generative adversarial nets (GAN).
