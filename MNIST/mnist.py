@@ -9,7 +9,7 @@ import torchvision.datasets as datasets
 
 transform = transforms.Compose(
     [transforms.ToTensor(),
-     transforms.Normalize((0.5,), (1.0,))]  # TODO check normalize rates for MNIST
+     transforms.Normalize((0.5,), (1.0,))]
 )
 
 batch_size = 16

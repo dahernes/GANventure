@@ -1,0 +1,8 @@
+NORMALIZE
+implementation calc_mean_std class based on tensors
+method for calculating the average mean and std of the whole dataset (-> for Normalize)
+check Normalize for output range ((-1,1) | tanh -- (0,1) | sigmoid) -> pref (-1,1) tanh for generator
+
+FID
+implementation of a FID measure class
+as evaluation method
