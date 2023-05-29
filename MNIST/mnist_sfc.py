@@ -116,13 +116,13 @@ for epoch in range(num_epoch):
         lossGen.backward()
         opti_gen.step()
 
-        # Setup for Tensorboard
         if batch_idx == 0:
             print(
                 f"Epoch [{epoch}/{num_epoch}] / "
                 f"Loss D: {lossDis:.4f}, Loss G: {lossGen:.4f}"
             )
 
+            # Setup for Tensorboard
             with torch.no_grad():
                 fake = gen(fix_noise).reshape(-1, 1, 28, 28)
                 data = real_img.reshape(-1, 1, 28, 28)

@@ -18,8 +18,17 @@ class Discriminator(nn.Module):
     def __init__(self, input_features):
         super().__init__()
         self.disc = nn.Sequential(
-            nn.Linear(input_features, 128),
-            nn.LeakyReLU(0.01),
+            nn.Linear(input_features, 1024),
+            nn.LeakyReLU(0.2),
+            nn.Linear(1024, 512),
+            nn.BatchNorm1d(512),
+            nn.LeakyReLU(0.2),
+            nn.Linear(512, 256),
+            nn.BatchNorm1d(256),
+            nn.LeakyReLU(0.2),
+            nn.Linear(256, 128),
+            nn.BatchNorm1d(128),
+            nn.LeakyReLU(0.2),
             nn.Linear(128, 1),
             nn.Sigmoid(),
         )
@@ -35,7 +44,14 @@ class Generator(nn.Module):
     def __init__(self, z_dim, image_dim):
         super().__init__()
         self.gen = nn.Sequential(
-            nn.Linear(z_dim, 128),
+            nn.Linear(z_dim, 512),
+            nn.BatchNorm1d(512),
+            nn.LeakyReLU(0.2),
+            nn.Linear(512, 256),
+            nn.BatchNorm1d(256),
+            nn.LeakyReLU(0.2),
+            nn.Linear(256, 128),
+            nn.BatchNorm1d(128),
             nn.LeakyReLU(0.2),
             nn.Linear(128, image_dim),
             nn.Tanh(),
@@ -47,15 +63,17 @@ class Generator(nn.Module):
 
 # Hyperparameter
 device = "cuda" if torch.cuda.is_available() else "cpu"  # check if cuda is available
-lr = 3e-4  # call out for the best learning rate of adam
-batch_size = 32
+lr = 3e-4
+batch_size = 64
 num_epoch = 50
-z_dim = 64  # dimension of the z input into the generator
+z_dim = 128  # dimension of the z input into the generator
 image_dim = 784  # dimension of the mnist data -> flatten 28*28*1 -> 784
 
 # load the classes into the device
 disc = Discriminator(image_dim).to(device)
+print(disc)
 gen = Generator(z_dim, image_dim).to(device)
+print(gen)
 
 # create noise
 fix_noise = torch.randn((batch_size, z_dim)).to(device)
@@ -115,13 +133,13 @@ for epoch in range(num_epoch):
         lossGen.backward()
         opti_gen.step()
 
-        # Setup for Tensorboard
         if batch_idx == 0:
             print(
                 f"Epoch [{epoch}/{num_epoch}] / "
                 f"Loss D: {lossDis:.4f}, Loss G: {lossGen:.4f}"
             )
 
+            # Setup for Tensorboard
             with torch.no_grad():
                 fake = gen(fix_noise).reshape(-1, 1, 28, 28)
                 data = real_img.reshape(-1, 1, 28, 28)
