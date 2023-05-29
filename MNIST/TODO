@@ -6,3 +6,6 @@ check Normalize for output range ((-1,1) | tanh -- (0,1) | sigmoid) -> pref (-1,
 FID
 implementation of a FID measure class
 as evaluation method
+
+Comparison of networks
+first dataset: MNIST

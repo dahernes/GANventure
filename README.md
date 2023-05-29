@@ -1,9 +1,22 @@
 # GANventure
-### MNIST<br>
-Projekt 1: simple fully connected GAN
+## MNIST<br>
+Projekt 1: simple fully connected GAN<br>
+Projekt 2: optimized fully connected GAN *- in processing*<br>
+Projekt 3: build up a framework for comparison *- pending*
+* evaluation per FID (Fréchet Inception Distance)
+* normalization via calculated mean and std
+* examples of fake images
 
-<br><br>
-**useful literature**
+
+### Comparison
+#### MNIST
+| Model | FID | IMG Example |
+|-------|-----|-------------|
+|       |     |             |
+|       |     |             |
+|       |     |             |
+
+### useful literature
 <br>Guidance paper
 
 Goodfellow, I., Pouget-Abadie, J., Mirza, M., Xu, B., Warde-Farley, D., Ozair, S., ... & Bengio, Y. (2020). 
@@ -14,7 +27,7 @@ Radford, A., Metz, L., & Chintala, S. (2015).
 <br>Unsupervised representation learning with deep convolutional generative adversarial networks.
 <br>[link](https://arxiv.org/abs/1511.06434)
 
-<br><br>*more helpful literature*
+### more helpful literature
 
 Wang, Y. (2020). 
 <br>A mathematical introduction to generative adversarial nets (GAN).

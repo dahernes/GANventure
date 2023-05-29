@@ -1,4 +1,5 @@
-# optimized fully-connected GAN
+# simple fully-connected GAN
+# 128 parameter for both discriminator and generator - 1 hidden layer
 
 import torch
 import torch.nn as nn
@@ -47,16 +48,14 @@ class Generator(nn.Module):
 # Hyperparameter
 device = "cuda" if torch.cuda.is_available() else "cpu"  # check if cuda is available
 lr = 3e-4  # call out for the best learning rate of adam
-batch_size = 64
+batch_size = 32
 num_epoch = 50
 z_dim = 64  # dimension of the z input into the generator
 image_dim = 784  # dimension of the mnist data -> flatten 28*28*1 -> 784
 
 # load the classes into the device
 disc = Discriminator(image_dim).to(device)
-print(disc)
 gen = Generator(z_dim, image_dim).to(device)
-print(gen)
 
 # create noise
 fix_noise = torch.randn((batch_size, z_dim)).to(device)
@@ -80,8 +79,8 @@ opti_disc = optim.Adam(disc.parameters(), lr=lr)
 loss = nn.BCELoss()
 
 # log
-fake_writer = SummaryWriter(f"runs/MNIST_GAN/fake")
-real_writer = SummaryWriter(f"runs/MNIST_GAN/real")
+fake_writer = SummaryWriter(f"runs/MNIST_GAN_opt/fake")
+real_writer = SummaryWriter(f"runs/MNIST_GAN_opt/real")
 step = 0
 
 # Trainingloop
